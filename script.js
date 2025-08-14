@@ -65,22 +65,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Active navigation link based on scroll position
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section[id]');
-        const scrollPos = window.scrollY + 150;
+        const navbarHeight = navbar.offsetHeight || 0;
+        const scrollPos = window.scrollY + navbarHeight + 2;
 
+        let found = false;
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            if (!found && scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${sectionId}`) {
                         link.classList.add('active');
                     }
                 });
+                found = true;
             }
         });
+        // إذا لم يتم العثور على أي قسم، فعل أول رابط (Home)
+        if (!found) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            if (navLinks[0]) navLinks[0].classList.add('active');
+        }
     });
 
     // Smooth scrolling for navigation links

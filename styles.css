@@ -469,13 +469,14 @@ body {
 .string { color: #f59e0b; }
 .property { color: #e2e8f0; }
 
-.tech-orbit {
+.tech-floating {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    border: 2px solid rgba(71, 85, 105, 0.2);
-    border-radius: 50%;
-    animation: rotate-slow 30s linear infinite;
+    width: 800px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .tech-icon {
@@ -491,7 +492,37 @@ body {
     justify-content: center;
     font-size: 1.3rem;
     color: #3b82f6;
-    transform: rotate(var(--angle)) translateX(150px) rotate(calc(-1 * var(--angle)));
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.tech-icon:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-name: float-random-1;
+    animation-delay: 0s;
+}
+
+.tech-icon:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-name: float-random-2;
+    animation-delay: -2s;
+}
+
+.tech-icon:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-name: float-random-3;
+    animation-delay: -4s;
+}
+
+.tech-icon:nth-child(4) {
+    top: 15%;
+    right: 30%;
+    animation-name: float-random-4;
+    animation-delay: -6s;
 }
 
 .scroll-down {
@@ -1978,6 +2009,73 @@ section {
     to { opacity: 1; transform: translateX(0); }
 }
 
+/* Random floating animations for tech icons */
+@keyframes float-random-1 {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% { 
+        transform: translate(30px, -20px) rotate(5deg) scale(1.1);
+    }
+    50% { 
+        transform: translate(-15px, 25px) rotate(-3deg) scale(0.9);
+    }
+    75% { 
+        transform: translate(20px, 10px) rotate(2deg) scale(1.05);
+    }
+}
+
+@keyframes float-random-2 {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    20% { 
+        transform: translate(-25px, 15px) rotate(-4deg) scale(1.08);
+    }
+    40% { 
+        transform: translate(35px, -10px) rotate(6deg) scale(0.95);
+    }
+    60% { 
+        transform: translate(-10px, -30px) rotate(-2deg) scale(1.12);
+    }
+    80% { 
+        transform: translate(15px, 20px) rotate(3deg) scale(0.88);
+    }
+}
+
+@keyframes float-random-3 {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    30% { 
+        transform: translate(20px, -25px) rotate(7deg) scale(1.15);
+    }
+    60% { 
+        transform: translate(-30px, 5px) rotate(-5deg) scale(0.92);
+    }
+    90% { 
+        transform: translate(10px, 18px) rotate(4deg) scale(1.03);
+    }
+}
+
+@keyframes float-random-4 {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    15% { 
+        transform: translate(-20px, -15px) rotate(-6deg) scale(1.07);
+    }
+    35% { 
+        transform: translate(25px, 30px) rotate(4deg) scale(0.96);
+    }
+    55% { 
+        transform: translate(-5px, -20px) rotate(-3deg) scale(1.1);
+    }
+    75% { 
+        transform: translate(18px, -8px) rotate(5deg) scale(0.9);
+    }
+}
+
 /* Hero Responsive Design */
 @media (max-width: 768px) {
     .hero {
@@ -2036,16 +2134,15 @@ section {
         margin: 0 auto;
     }
 
-    .tech-orbit {
-        width: 250px;
-        height: 250px;
+    .tech-floating {
+        width: 300px;
+        height: 300px;
     }
 
     .tech-icon {
         width: 40px;
         height: 40px;
         font-size: 1.1rem;
-        transform: rotate(var(--angle)) translateX(125px) rotate(calc(-1 * var(--angle)));
     }
 
     .window-content {
@@ -2073,7 +2170,7 @@ section {
         font-size: 1.2rem;
     }
 
-    .tech-orbit {
+    .tech-floating {
         display: none;
     }
 
