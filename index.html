@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hisham Abdalla - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Hisham Abdalla</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#education" class="nav-link">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-mesh"></div>
+            <div class="hero-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-intro">
+                    <span class="hero-greeting">Hello! I'm</span>
+                    <h1 class="hero-name">
+                        <span class="first-name">Hisham</span>
+                        <span class="last-name">Abdalla </span>
+                    </h1>
+                    <div class="hero-role">
+                        <span class="role-prefix">I'm a</span>
+                        <span class="role-title">.NET Backend Developer</span>
+                    </div>
+                </div>
+                
+                <p class="hero-description">
+                    Aspiring Back-End Developer with a strong foundation in C#, ASP.NET Core, 
+                    and modern back-end development practices. Passionate about building secure, 
+                    scalable applications and solving complex problems.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">
+                        <span>Get In Touch</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#projects" class="btn-outline">
+                        <span>View Projects</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
+                        </div>
+                        <span class="window-title">Program.cs</span>
+                    </div>
+                    <div class="window-content">
+                        <div class="code-line">
+                            <span class="line-num">1</span>
+                            <span class="code"><span class="keyword">using</span> System;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">2</span>
+                            <span class="code"><span class="keyword">using</span> Microsoft.AspNetCore;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">3</span>
+                            <span class="code"></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">4</span>
+                            <span class="code"><span class="keyword">var</span> <span class="variable">builder</span> = <span class="class">WebApplication</span>.<span class="method">CreateBuilder</span>();</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">5</span>
+                            <span class="code"><span class="keyword">var</span> <span class="variable">app</span> = <span class="variable">builder</span>.<span class="method">Build</span>();</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">6</span>
+                            <span class="code"></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">7</span>
+                            <span class="code"><span class="variable">app</span>.<span class="method">MapGet</span>(<span class="string">"/api/developer"</span>,</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">8</span>
+                            <span class="code">    () => <span class="keyword">new</span> { <span class="property">Name</span> = <span class="string">"Hisham"</span> });</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">9</span>
+                            <span class="code"></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-num">10</span>
+                            <span class="code"><span class="variable">app</span>.<span class="method">Run</span>();</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-orbit">
+                    <div class="tech-icon" style="--angle: 0deg">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="tech-icon" style="--angle: 90deg">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-icon" style="--angle: 180deg">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="tech-icon" style="--angle: 270deg">
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm an aspiring .NET Backend Developer with a strong foundation in C#, ASP.NET Core, and modern back-end development practices. 
+                        I'm skilled in building secure, scalable applications using clean architecture and industry-standard tools.
+                    </p>
+                    <p>
+                        Passionate about solving complex problems, writing efficient server-side code, and collaborating in team environments. 
+                        I'm continuously learning and exploring new technologies to enhance development productivity and software quality.
+                    </p>
+                    <p>
+                        Currently pursuing my Bachelor's degree in Computer Science at Mansoura University while gaining practical experience 
+                        through professional training programs and hands-on projects.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Years Learning</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">What I work with</p>
+            </div>
+            <div class="skills-grid">
+                <!-- Skills will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my recent work</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Projects will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">My professional journey</p>
+            </div>
+            <div class="timeline">
+                <!-- Experience items will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic background</p>
+            </div>
+            <div class="education-grid">
+                <!-- Education items will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hishvmabdalla@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+20-100-829-5776</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Mansoura, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/hishamabdalla22" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/hishamabdalla" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:hishvmabdalla@gmail.com" class="social-link" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hisham Abdalla Kamal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
