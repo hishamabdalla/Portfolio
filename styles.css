@@ -7,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -14,6 +15,8 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -2449,5 +2452,54 @@ section {
         width: 100%;
         max-width: 280px;
         justify-content: center;
+    }
+}
+
+/* ========================================
+   SMOOTH SCROLL ANIMATIONS
+======================================== */
+
+/* Simple and smooth hover effects */
+.skill-card,
+.project-card,
+.education-card,
+.timeline-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(108, 79, 247, 0.25);
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+/* Performance optimizations */
+.section-header,
+.about-content,
+.skill-card,
+.project-card,
+.education-card,
+.timeline-item,
+.contact-form {
+    will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .skill-card:hover,
+    .project-card:hover,
+    .education-card:hover,
+    .timeline-item:hover {
+        transform: none !important;
     }
 }

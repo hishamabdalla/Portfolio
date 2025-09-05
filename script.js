@@ -39,58 +39,74 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect with debounce
     let lastScrollY = window.scrollY;
+    let scrollTimeout;
     
     window.addEventListener('scroll', function() {
-        const currentScrollY = window.scrollY;
-        
-        // Add scrolled class for backdrop effect
-        if (currentScrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        // Clear previous timeout
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
         }
         
-        // Hide navbar when scrolling down, show when scrolling up
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = currentScrollY;
-    });
+        // Debounce scroll events
+        scrollTimeout = setTimeout(() => {
+            const currentScrollY = window.scrollY;
+            
+            // Add scrolled class for backdrop effect
+            if (currentScrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Hide navbar when scrolling down, show when scrolling up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        }, 10); // Small delay to smooth out scroll events
+    }, { passive: true });
 
-    // Active navigation link based on scroll position
+    // Active navigation link based on scroll position with debounce
+    let navTimeout;
     window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section[id]');
-        const navbarHeight = navbar.offsetHeight || 0;
-        const scrollPos = window.scrollY + navbarHeight + 2;
+        if (navTimeout) {
+            clearTimeout(navTimeout);
+        }
+        
+        navTimeout = setTimeout(() => {
+            const sections = document.querySelectorAll('section[id]');
+            const navbarHeight = navbar.offsetHeight || 0;
+            const scrollPos = window.scrollY + navbarHeight + 2;
 
-        let found = false;
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            if (!found && scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            let found = false;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                if (!found && scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                    found = true;
+                }
+            });
+            // إذا لم يتم العثور على أي قسم، فعل أول رابط (Home)
+            if (!found) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
                 });
-                found = true;
+                if (navLinks[0]) navLinks[0].classList.add('active');
             }
-        });
-        // إذا لم يتم العثور على أي قسم، فعل أول رابط (Home)
-        if (!found) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            if (navLinks[0]) navLinks[0].classList.add('active');
-        }
-    });
+        }, 15);
+    }, { passive: true });
 
     // Smooth scrolling for navigation links
     navLinks.forEach(link => {
@@ -157,28 +173,105 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactForm();
 });
 
-// Animation on scroll - Disabled for better performance
+// Smooth and elegant scroll animations
 function initializeAnimations() {
-    // Simple observer without animations
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+        // Just make elements visible without animation
+        const allElements = document.querySelectorAll('.section-header, .about-content, .skill-card, .project-card, .education-card, .timeline-item, .contact-form');
+        allElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        return;
+    }
+
+    // Smooth animation options
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    // Simple and smooth animation observer
+    const animationObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'none';
+                const element = entry.target;
+                
+                // Add smooth transition
+                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+                
+                // Clean up after animation
+                setTimeout(() => {
+                    element.style.transition = '';
+                    element.style.willChange = 'auto';
+                }, 800);
+                
+                // Unobserve after animation
+                animationObserver.unobserve(element);
             }
         });
     }, observerOptions);
 
-    // Just observe elements without heavy animations
-    const elements = document.querySelectorAll('.section-header, .skill-card, .project-card');
-    elements.forEach(el => {
-        observer.observe(el);
+    // Staggered animations for grid items - more controlled
+    const staggerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const container = entry.target;
+                const items = container.querySelectorAll('.skill-card, .project-card, .education-card, .timeline-item');
+                
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        
+                        // Clean up
+                        setTimeout(() => {
+                            item.style.transition = '';
+                            item.style.willChange = 'auto';
+                        }, 600);
+                    }, index * 100); // Reduced stagger delay for smoother effect
+                });
+                
+                staggerObserver.unobserve(container);
+            }
+        });
+    }, observerOptions);
+
+    // Setup elements for smooth animation
+    const elementsToAnimate = document.querySelectorAll('.section-header, .about-content');
+    elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.willChange = 'transform, opacity';
+        animationObserver.observe(el);
     });
+
+    // Setup containers for staggered animations
+    const containersToStagger = document.querySelectorAll('.skills-grid, .projects-grid, .education-grid, .timeline');
+    containersToStagger.forEach(container => {
+        const items = container.querySelectorAll('.skill-card, .project-card, .education-card, .timeline-item');
+        items.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.willChange = 'transform, opacity';
+        });
+        staggerObserver.observe(container);
+    });
+
+    // Special handling for contact form
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.style.opacity = '0';
+        contactForm.style.transform = 'translateY(20px)';
+        contactForm.style.willChange = 'transform, opacity';
+        animationObserver.observe(contactForm);
+    }
 }
 
 // Skills data and initialization
