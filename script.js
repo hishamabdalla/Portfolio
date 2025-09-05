@@ -240,16 +240,16 @@ function initializeProjects() {
             title: 'Evolvify - Soft Skills Learning Platform',
             description: 'A scalable backend for an educational platform using ASP.NET Core Web API. Features AI-powered course recommendations, community features, and interactive quiz system.',
             technologies: ['ASP.NET Core', 'Clean Architecture', 'CQRS', 'JWT', 'AutoMapper', 'FluentValidation', 'Stripe'],
-            github: 'https://github.com/hishamabdalla/Evolvify',
-            demo: 'https://github.com/hishamabdalla/Evolvify',
+            github: 'https://github.com/Evolvify-Project/Evolvify-Backend',
+            demo: 'https://evolvify.runasp.net/swagger/index.html',
             icon: 'fas fa-graduation-cap'
         },
         {
             title: 'Restaurant Management API',
             description: 'Secure RESTful API built with Clean Architecture and CQRS patterns. Features role-based authorization, custom middleware, and comprehensive logging.',
             technologies: ['ASP.NET Core', 'MediatR', 'FluentValidation', 'AutoMapper', 'Serilog'],
-            github: 'https://github.com/hishamabdalla/Restaurant-API',
-            demo: 'https://github.com/hishamabdalla/Restaurant-API',
+            github: 'https://github.com/hishamabdalla/Restaurants-API',
+            demo: 'https://github.com/hishamabdalla/Restaurants-API',
             icon: 'fas fa-utensils'
         },
         {
@@ -257,15 +257,15 @@ function initializeProjects() {
             description: 'Scalable e-commerce API using Onion Architecture with Repository and Unit of Work patterns. Includes JWT authentication and Redis caching.',
             technologies: ['ASP.NET Core', 'Onion Architecture', 'JWT', 'Redis', 'Repository Pattern'],
             github: 'https://github.com/hishamabdalla/WebStore-API',
-            demo: 'https://github.com/hishamabdalla/WebStore-API',
+            demo: 'https://webstorev.runasp.net/swagger/index.html',
             icon: 'fas fa-shopping-cart'
         },
         {
             title: 'Nilura - E-Commerce Platform',
             description: 'Full-stack e-commerce platform with Stripe payment integration, admin/customer roles, and secure authentication workflows using N-Tier architecture.',
             technologies: ['ASP.NET MVC', 'Entity Framework', 'Stripe', 'N-Tier Architecture'],
-            github: 'https://github.com/hishamabdalla/Nilura',
-            demo: 'https://github.com/hishamabdalla/Nilura',
+            github: 'https://github.com/hishamabdalla/E-Commerce',
+            demo: 'https://github.com/hishamabdalla/E-Commerce',
             icon: 'fas fa-store'
         }
     ];
