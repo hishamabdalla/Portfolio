@@ -157,30 +157,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactForm();
 });
 
-// Animation on scroll
+// Animation on scroll - Disabled for better performance
 function initializeAnimations() {
+    // Simple observer without animations
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'none';
             }
         });
     }, observerOptions);
 
-    // Add animation classes to elements
-    const animatedElements = document.querySelectorAll('.section-header, .about-text, .about-stats, .skill-card, .project-card, .timeline-item, .education-card, .contact-item, .contact-form');
-    
-    animatedElements.forEach((el, index) => {
-        el.classList.add('fade-in');
+    // Just observe elements without heavy animations
+    const elements = document.querySelectorAll('.section-header, .skill-card, .project-card');
+    elements.forEach(el => {
         observer.observe(el);
-        
-        // Add stagger effect
-        el.style.transitionDelay = `${index * 0.1}s`;
     });
 }
 
