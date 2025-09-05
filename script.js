@@ -243,32 +243,32 @@ function initializeProjects() {
             title: 'Evolvify - Soft Skills Learning Platform',
             description: 'A scalable backend for an educational platform using ASP.NET Core Web API. Features AI-powered course recommendations, community features, and interactive quiz system.',
             technologies: ['ASP.NET Core', 'Clean Architecture', 'CQRS', 'JWT', 'AutoMapper', 'FluentValidation', 'Stripe'],
-            github: 'https://github.com/hishamabdalla',
-            demo: '#',
+            github: 'https://github.com/hishamabdalla/Evolvify',
+            demo: 'https://github.com/hishamabdalla/Evolvify',
             icon: 'fas fa-graduation-cap'
         },
         {
             title: 'Restaurant Management API',
             description: 'Secure RESTful API built with Clean Architecture and CQRS patterns. Features role-based authorization, custom middleware, and comprehensive logging.',
             technologies: ['ASP.NET Core', 'MediatR', 'FluentValidation', 'AutoMapper', 'Serilog'],
-            github: 'https://github.com/hishamabdalla',
-            demo: '#',
+            github: 'https://github.com/hishamabdalla/Restaurant-API',
+            demo: 'https://github.com/hishamabdalla/Restaurant-API',
             icon: 'fas fa-utensils'
         },
         {
             title: 'WebStore API',
             description: 'Scalable e-commerce API using Onion Architecture with Repository and Unit of Work patterns. Includes JWT authentication and Redis caching.',
             technologies: ['ASP.NET Core', 'Onion Architecture', 'JWT', 'Redis', 'Repository Pattern'],
-            github: 'https://github.com/hishamabdalla',
-            demo: '#',
+            github: 'https://github.com/hishamabdalla/WebStore-API',
+            demo: 'https://github.com/hishamabdalla/WebStore-API',
             icon: 'fas fa-shopping-cart'
         },
         {
             title: 'Nilura - E-Commerce Platform',
             description: 'Full-stack e-commerce platform with Stripe payment integration, admin/customer roles, and secure authentication workflows using N-Tier architecture.',
             technologies: ['ASP.NET MVC', 'Entity Framework', 'Stripe', 'N-Tier Architecture'],
-            github: 'https://github.com/hishamabdalla',
-            demo: '#',
+            github: 'https://github.com/hishamabdalla/Nilura',
+            demo: 'https://github.com/hishamabdalla/Nilura',
             icon: 'fas fa-store'
         }
     ];
@@ -289,13 +289,13 @@ function initializeProjects() {
                     ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                 </div>
                 <div class="project-links">
-                    <a href="${project.github}" class="project-link" target="_blank">
+                    <a href="${project.github}" class="project-link github-link" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
-                        GitHub
+                        <span>GitHub</span>
                     </a>
-                    <a href="${project.demo}" class="project-link" target="_blank">
+                    <a href="${project.demo}" class="project-link demo-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-external-link-alt"></i>
-                        Live Demo
+                        <span>Live Demo</span>
                     </a>
                 </div>
             </div>
@@ -619,8 +619,38 @@ function initializeHero() {
     }
 }
 
+// CV Download functionality
+function initializeCVDownload() {
+    const cvDownloadBtn = document.querySelector('a[download="Hisham_Abdalla_CV.pdf"]');
+    
+    if (cvDownloadBtn) {
+        cvDownloadBtn.addEventListener('click', function(e) {
+            // Add visual feedback
+            const originalText = this.querySelector('span').textContent;
+            const icon = this.querySelector('i');
+            const span = this.querySelector('span');
+            
+            // Change button text temporarily
+            span.textContent = 'Downloading...';
+            icon.className = 'fas fa-spinner fa-spin';
+            
+            // Reset after a short delay
+            setTimeout(() => {
+                span.textContent = originalText;
+                icon.className = 'fas fa-download';
+                
+                // Show success notification
+                showNotification('CV downloaded successfully!', 'success');
+            }, 1500);
+        });
+    }
+}
+
 // Initialize lazy loading
 document.addEventListener('DOMContentLoaded', initializeLazyLoading);
 
 // Initialize Hero when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeHero);
+
+// Initialize CV Download
+document.addEventListener('DOMContentLoaded', initializeCVDownload);
