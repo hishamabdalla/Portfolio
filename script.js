@@ -188,28 +188,28 @@ function initializeAnimations() {
         return;
     }
 
-    // Smooth animation options
+    // Enhanced smooth animation options
     const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    // Simple and smooth animation observer
+    // Ultra smooth animation observer
     const animationObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 
-                // Add smooth transition
-                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                // Smooth transition with custom easing
+                element.style.transition = 'opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+                element.style.transform = 'translateY(0) scale(1)';
                 
                 // Clean up after animation
                 setTimeout(() => {
                     element.style.transition = '';
                     element.style.willChange = 'auto';
-                }, 800);
+                }, 1000);
                 
                 // Unobserve after animation
                 animationObserver.unobserve(element);
@@ -217,7 +217,7 @@ function initializeAnimations() {
         });
     }, observerOptions);
 
-    // Staggered animations for grid items - more controlled
+    // Staggered animations with improved timing
     const staggerObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -226,16 +226,24 @@ function initializeAnimations() {
                 
                 items.forEach((item, index) => {
                     setTimeout(() => {
-                        item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                        item.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                         item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
+                        item.style.transform = 'translateY(0) scale(1)';
+                        
+                        // Add subtle bounce effect
+                        setTimeout(() => {
+                            item.style.transform = 'translateY(0) scale(1.02)';
+                            setTimeout(() => {
+                                item.style.transform = 'translateY(0) scale(1)';
+                            }, 150);
+                        }, 400);
                         
                         // Clean up
                         setTimeout(() => {
                             item.style.transition = '';
                             item.style.willChange = 'auto';
-                        }, 600);
-                    }, index * 100); // Reduced stagger delay for smoother effect
+                        }, 800);
+                    }, index * 80); // Optimized stagger timing
                 });
                 
                 staggerObserver.unobserve(container);
@@ -243,11 +251,11 @@ function initializeAnimations() {
         });
     }, observerOptions);
 
-    // Setup elements for smooth animation
+    // Setup elements for smooth animation with initial scaling
     const elementsToAnimate = document.querySelectorAll('.section-header, .about-content');
     elementsToAnimate.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
+        el.style.transform = 'translateY(30px) scale(0.95)';
         el.style.willChange = 'transform, opacity';
         animationObserver.observe(el);
     });
@@ -258,7 +266,7 @@ function initializeAnimations() {
         const items = container.querySelectorAll('.skill-card, .project-card, .education-card, .timeline-item');
         items.forEach(item => {
             item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
+            item.style.transform = 'translateY(25px) scale(0.9)';
             item.style.willChange = 'transform, opacity';
         });
         staggerObserver.observe(container);
@@ -268,7 +276,7 @@ function initializeAnimations() {
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.style.opacity = '0';
-        contactForm.style.transform = 'translateY(20px)';
+        contactForm.style.transform = 'translateY(30px) scale(0.95)';
         contactForm.style.willChange = 'transform, opacity';
         animationObserver.observe(contactForm);
     }
@@ -728,9 +736,6 @@ function initializeCVDownload() {
             setTimeout(() => {
                 span.textContent = originalText;
                 icon.className = 'fas fa-download';
-                
-                // Show success notification
-                showNotification('CV downloaded successfully!', 'success');
             }, 1500);
         });
     }
