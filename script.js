@@ -285,18 +285,32 @@ function initializeAnimations() {
 // Skills data and initialization
 function initializeSkills() {
     const skillsData = [
-        { name: 'C#', level: 90, icon: 'fas fa-code' },
-        { name: 'ASP.NET Core', level: 85, icon: 'fas fa-globe' },
-        { name: 'Entity Framework', level: 80, icon: 'fas fa-database' },
-        { name: 'SQL Server', level: 85, icon: 'fas fa-server' },
-        { name: 'RESTful APIs', level: 88, icon: 'fas fa-exchange-alt' },
-        { name: 'Git & GitHub', level: 82, icon: 'fab fa-git-alt' },
-        { name: 'Redis', level: 75, icon: 'fas fa-memory' },
-        { name: 'JWT Auth', level: 80, icon: 'fas fa-shield-alt' },
-        { name: 'Clean Architecture', level: 78, icon: 'fas fa-layer-group' },
-        { name: 'CQRS', level: 75, icon: 'fas fa-arrows-alt-h' },
-        { name: 'SignalR', level: 70, icon: 'fas fa-broadcast-tower' },
-        { name: 'AutoMapper', level: 80, icon: 'fas fa-map' }
+        // Programming Languages
+        { name: 'C#', level: 90, icon: 'fas fa-code', category: 'Languages' },
+        { name: 'SQL Server', level: 85, icon: 'fas fa-database', category: 'Languages' },
+       
+        // Frameworks & Libraries
+        { name: 'ASP.NET MVC', level: 88, icon: 'fas fa-globe', category: 'Frameworks' },
+        { name: 'ASP.NET Web API', level: 85, icon: 'fas fa-exchange-alt', category: 'Frameworks' },
+        { name: 'Entity Framework Core', level: 85, icon: 'fas fa-database', category: 'Frameworks' },
+        { name: 'LINQ', level: 88, icon: 'fas fa-filter', category: 'Concepts' },
+        { name: 'SignalR', level: 75, icon: 'fas fa-broadcast-tower', category: 'Frameworks' },
+        
+        // Architectural Patterns
+        { name: 'Clean Architecture', level: 80, icon: 'fas fa-layer-group', category: 'Architecture' },
+        { name: 'CQRS', level: 75, icon: 'fas fa-arrows-alt-h', category: 'Architecture' },
+
+        // Core Concepts      
+        { name: 'OOP', level: 90, icon: 'fas fa-object-group', category: 'Concepts' },
+        { name: 'SOLID Principles', level: 85, icon: 'fas fa-cube', category: 'Concepts' }, 
+        { name: 'Design Patterns', level: 80, icon: 'fas fa-puzzle-piece', category: 'Concepts' },
+        { name: 'RESTful APIs', level: 88, icon: 'fas fa-exchange-alt', category: 'Concepts' },
+
+        // Tools & Technologies
+        { name: 'Git & GitHub', level: 85, icon: 'fab fa-git-alt', category: 'Tools' },
+        { name: 'Docker', level: 75, icon: 'fab fa-docker', category: 'Tools' },
+        { name: 'Redis', level: 75, icon: 'fas fa-memory', category: 'Tools' },
+        
     ];
 
     const skillsGrid = document.querySelector('.skills-grid');
